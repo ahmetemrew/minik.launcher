@@ -1,0 +1,8 @@
+com.minik.launcher.app-pngs-0 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\build\generated\res\pngs\release
+com.minik.launcher.app-resValues-1 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\build\generated\res\resValues\release
+com.minik.launcher.app-packageReleaseResources-2 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.minik.launcher.app-packageReleaseResources-3 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.minik.launcher.app-merged-not-compiled-resources-4 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\build\intermediates\merged-not-compiled-resources\release
+com.minik.launcher.app-release-5 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\build\intermediates\merged_res\release\mergeReleaseResources
+com.minik.launcher.app-main-6 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\src\main\res
+com.minik.launcher.app-release-7 C:\Users\yavuz\Desktop\rastgele\minik_launcher\app\src\release\res

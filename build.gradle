@@ -1,0 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.5.0'
+    }
+}
+
+// allprojects block removed to fix "FAIL_ON_PROJECT_REPOS" error
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

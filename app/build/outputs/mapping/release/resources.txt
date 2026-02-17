@@ -1,0 +1,7 @@
+@com.minik.launcher:drawable/ic_launcher : reachable=true
+
+The root reachable resources are:
+ drawable:ic_launcher:2130771968
+Unused resources are: 
+
+Resource shrinking did not work (grew from 18571 to 18579); using original instead

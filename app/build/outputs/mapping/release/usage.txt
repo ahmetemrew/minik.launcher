@@ -1,0 +1,10 @@
+com.minik.launcher.R$drawable
+com.minik.launcher.R
+com.minik.launcher.MainActivity$2:
+    public static int compare()
+com.minik.launcher.MainActivity:
+    public static void lambda$onCreate$0()
+    public static boolean lambda$onCreate$1()
+    public static synthetic void lambda$showContextMenu$2()
+    public static void launchApp()
+    public static void showContextMenu()

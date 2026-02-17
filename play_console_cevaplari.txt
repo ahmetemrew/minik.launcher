@@ -1,0 +1,96 @@
+=== Google Play Console Answers & Info ===
+
+1. Privacy Policy (Gizlilik Politikası)
+---------------------------------------
+URL is required. You can host this text on a Google Site or GitHub Gist.
+Policy Text:
+"Minik Launcher respects your privacy. This application functions entirely offline and does not collect, store, or share any user data. It does not use cookies, tracking pixels, or any third-party analytics services. No personal information is requested or accessed."
+
+2. App Access (Uygulama Erişimi)
+--------------------------------
+Selection: "All functionality is available without special access"
+(Tüm işlevlere özel erişim olmadan kullanılabilir)
+
+3. Ads (Reklamlar)
+------------------
+Selection: "No, my app does not contain ads"
+(Hayır, uygulamam reklam içermiyor)
+
+4. Content Rating (İçerik Derecelendirme)
+-----------------------------------------
+Category: "Utility, Productivity, Communication, or other"
+Violent material? NO
+Sexuality? NO
+Offensive language? NO
+Controlled substances? NO
+Promotion of age-restricted products? NO
+Miscellaneous:
+- Does the app allow users to interact or exchange content? NO
+- Does the app share the user's physical location? NO
+- Does the app allow purchasing digital goods? NO
+
+Result: PEGI 3 / Everyone
+
+5. Target Audience (Hedef Kitle)
+--------------------------------
+Selected Ages: 13-15, 16-17, 18+
+(Avoiding "5 and under" prevents strict "Designed for Families" requirements, even though the app is safe. 13+ is easiest for utility apps).
+Appeal to Children: "No" (Hayır)
+
+6. News Apps (Haber Uygulamaları)
+---------------------------------
+Selection: "No, it is not a news app"
+
+7. COVID-19 Contact Tracing
+---------------------------
+Selection: "My app is not a publicly available COVID-19 contact tracing or status app"
+
+8. Data Safety (Veri Güvenliği)
+-------------------------------
+Does your app collect or share any of the required user data types?
+Selection: "No" (Hayır)
+
+9. Government Apps (Resmi Kurum Uygulamaları)
+---------------------------------------------
+Selection: "No" (Hayır)
+
+10. Financial Features (Finansla İlgili Özellikler)
+---------------------------------------------------
+Selection: "My app doesn't provide any financial features"
+(Uygulamam herhangi bir finansal özellik sağlamıyor)
+
+11. Health Apps (Sağlık Uygulamaları)
+-------------------------------------
+Selection: "My app is not a health app" (Sağlık uygulaması değil)
+
+12. App Category & Contact (Uygulama Kategorisi ve İletişim)
+------------------------------------------------------------
+App Category: "App" (Uygulama)
+Category: "Tools" or "Productivity" (Araçlar veya Verimlilik)
+Email Address: [Your Email Address]
+Phone/Website: (Optional, leave blank if not needed)
+
+13. Store Listing (Mağaza Girişi)
+---------------------------------
+(Already provided in 'play_store_yazilari.txt')
+
+14. HASSAS İZİNLER (SENSITIVE PERMISSIONS) - QUERY_ALL_PACKAGES
+---------------------------------------------------------------
+Google Play Console'da "Uygulama İçeriği" -> "Hassas Uygulama İzinleri" bölümüne girin.
+
+1. Temel Amaç (Core Purpose):
+   (Bu alana aşağıdaki metni yapıştırın - 500 karakter sınırı var)
+   "Bu uygulama bir Android Başlatıcısıdır (Launcher). Ana işlevi, kullanıcının cihazında yüklü olan diğer uygulamaları listelemek ve kullanıcının bunları başlatmasını sağlamaktır. QUERY_ALL_PACKAGES izni olmadan uygulama, yüklü paketleri tespit edemez ve temel işlevini (uygulama listeleme ve açma) yerine getiremez."
+
+2. Kullanım (Usage) - Kutucuk Seçimi:
+   [x] Uygulama işlevselliği (App functionality)
+   (Diğer kutucukları işaretlemeyin)
+
+3. Video Talimatları (Video Instructions):
+   Link: (Buraya YouTube veya Google Drive video linkinizi yapıştırın)
+   Video İçeriği: Ekran kaydı alarak şunları gösterin:
+   - Uygulamayı açın.
+   - Uygulama listesinin (diğer yüklü uygulamaların) ekrana geldiğini gösterin.
+   - Listeden bir uygulamaya tıklayıp açıldığını gösterin.
+   - Bu video, uygulamanın bu izni *neden* kullandığını kanıtlar.
+

@@ -1,0 +1,81 @@
+=== Play Store Listing (ENGLISH) ===
+
+1. APP NAME (Max 30 Characters)
+-------------------------------
+Option 1: Minik Launcher
+Option 2: Minik: Tiny Launcher
+Option 3: Minik: Super Fast Launcher
+
+2. SHORT DESCRIPTION (Max 80 Characters)
+----------------------------------------
+Option 1: The world's smallest, ad-free, and super fast Android launcher.
+Option 2: Boost your phone! Only 22KB size, battery saver, and minimalist launcher.
+Option 3: No clutter, no ads. The purest and fastest Android experience.
+
+3. FULL DESCRIPTION (Max 4000 Characters)
+-----------------------------------------
+Tired of launchers that slow down your phone, drain your battery, and are full of ads?
+
+Meet Minik Launcher! 🚀
+
+Designed to be the world's lightest Android launcher. Its size is so small that it takes up less space than a single photo you take!
+
+FEATURES:
+⚡ **Incredibly Fast:** Returns old phones to their first-day speed. No lag in menu transitions.
+📦 **Ultra Small Size:** Doesn't waste your storage space. Downloads in seconds.
+🔋 **Battery Friendly:** Doesn't drain your charge working in the background.
+🎨 **Transparent Design:** You are not doomed to black screens! Shows your phone's current wallpaper stylishly.
+✨ **Clean and Clear:** Just your apps. No unnecessary widgets, news feeds, or distracting elements.
+🔄 **Smart List:** Automatically updates the list when you install or delete a new app.
+🛠️ **Easy Management:** Just long-press on an app to uninstall it or see its info.
+
+❌ No Ads
+❌ No Data Collection
+❌ No Unnecessary Permissions
+
+Unleash your phone's true potential. Discover the power of simplicity.
+
+Download now and feel the difference!
+
+
+================================================================================
+
+
+=== Play Store Mağaza Girişi (TÜRKÇE) ===
+
+1. UYGULAMA ADI (Maksimum 30 Karakter)
+--------------------------------------
+Seçenek 1: Minik Launcher
+Seçenek 2: Minik Launcher: En Hafif
+Seçenek 3: Minik: Süper Hızlı Başlatıcı
+
+2. KISA AÇIKLAMA (Maksimum 80 Karakter)
+---------------------------------------
+Seçenek 1: Dünyanın en küçük, reklamsız ve süper hızlı Android başlatıcısı.
+Seçenek 2: Telefonunuzu uçurun! Sadece 22KB boyutunda, pil dostu ve sade launcher.
+Seçenek 3: Karmaşa yok, reklam yok. En saf ve hızlı Android deneyimi.
+
+3. TAM AÇIKLAMA (Maksimum 4000 Karakter)
+----------------------------------------
+Telefonunuzu yavaşlatan, pilinizi tüketen ve reklam dolu başlatıcılardan sıkıldınız mı?
+
+Minik Launcher ile tanışın! 🚀
+
+Dünyanın en hafif Android başlatıcısı olmak için tasarlandı. Boyutu o kadar küçük ki, çektiğiniz tek bir fotoğraftan bile daha az yer kaplar!
+
+ÖZELLİKLER:
+⚡ **İnanılmaz Hızlı:** Eski telefonları bile ilk günkü hızına döndürür. Menü geçişlerinde takılma yok.
+📦 **Ultra Küçük Boyut:** Depolama alanınızı harcamaz. İndirmesi saniyeler sürer.
+🔋 **Pil Dostu:** Arka planda çalışıp şarjınızı yemez.
+🎨 **Şeffaf Tasarım:** Siyah ekranlara mahkum değilsiniz! Telefonunuzun mevcut duvar kağıdını şık bir şekilde gösterir.
+✨ **Sade ve Net:** Sadece uygulamalarınız. Gereksiz widgetlar, haber akışları veya dikkat dağıtıcı öğeler yok.
+🔄 **Akıllı Liste:** Yeni bir uygulama yüklediğinizde veya sildiğinizde listeyi otomatik günceller.
+🛠️ **Kolay Yönetim:** Bir uygulamayı kaldırmak veya bilgilerine bakmak için üzerine basılı tutmanız yeterli.
+
+❌ Reklam Yok
+❌ Veri Toplama Yok
+❌ Gereksiz İzinler Yok
+
+Telefonunuzun gerçek potansiyelini ortaya çıkarın. Sadeliğin gücünü keşfedin.
+
+Hemen indirin ve farkı hissedin!

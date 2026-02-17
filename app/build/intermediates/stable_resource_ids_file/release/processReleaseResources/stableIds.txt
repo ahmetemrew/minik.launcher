@@ -1,0 +1,1 @@
+com.minik.launcher:drawable/ic_launcher = 0x7f010000
