@@ -1,2 +1,0 @@
-com.minik.launcher.MainActivity
-com.minik.launcher.MainActivity: MainActivity()
