@@ -1,40 +1,47 @@
 package com.minik.launcher;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private static final String EMPTY_MESSAGE = "No launchable apps found.";
-    private static final String OPEN_ERROR_MESSAGE = "App could not be opened.";
-    private static final String REMOVE_ERROR_MESSAGE = "App could not be removed.";
-
-    private final List<ResolveInfo> apps = new ArrayList<>();
-    private final List<String> labels = new ArrayList<>();
-
     private ListView listView;
-    private LabelAdapter adapter;
-    private PackageManager packageManager;
-    private boolean receiverRegistered;
-    private boolean emptyStateShown;
+    private AppAdapter adapter;
+    private PackageManager pm;
+
+    private static class AppItem {
+        String label;
+        Drawable icon;
+        String packageName;
+        String className;
+
+        AppItem(String label, Drawable icon, String packageName, String className) {
+            this.label = label;
+            this.icon = icon;
+            this.packageName = packageName;
+            this.className = className;
+        }
+    }
 
     private final BroadcastReceiver packageReceiver = new BroadcastReceiver() {
         @Override
@@ -47,170 +54,134 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        packageManager = getPackageManager();
-
         listView = new ListView(this);
-        listView.setBackgroundColor(Color.WHITE);
+        listView.setBackgroundColor(Color.TRANSPARENT);
+        listView.setDivider(null);
+        listView.setDividerHeight(0);
         setContentView(listView);
 
-        adapter = new LabelAdapter(this, labels);
-        listView.setAdapter(adapter);
+        pm = getPackageManager();
+        loadApps();
 
-        listView.setOnItemClickListener((parent, view, position, id) -> launchApp(position));
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            AppItem item = adapter.getItem(position);
+            launchApp(item);
+        });
+
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
-            uninstallApp(position);
+            AppItem item = adapter.getItem(position);
+            showContextMenu(item);
             return true;
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        registerPackageReceiver();
-        loadApps();
-    }
-
-    @Override
-    protected void onStop() {
-        unregisterPackageReceiver();
-        super.onStop();
-    }
-
-    private void registerPackageReceiver() {
-        if (receiverRegistered) {
-            return;
-        }
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PACKAGE_ADDED);
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(packageReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(packageReceiver, filter);
-        }
-
-        receiverRegistered = true;
+        registerReceiver(packageReceiver, filter);
     }
 
-    private void unregisterPackageReceiver() {
-        if (!receiverRegistered) {
-            return;
-        }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         unregisterReceiver(packageReceiver);
-        receiverRegistered = false;
     }
 
     private void loadApps() {
-        Intent launcherIntent = new Intent(Intent.ACTION_MAIN);
-        launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ResolveInfo> resolvedApps = packageManager.queryIntentActivities(launcherIntent, 0);
-        if (resolvedApps == null) {
-            resolvedApps = Collections.emptyList();
-        }
-
-        Collections.sort(resolvedApps, new ResolveInfo.DisplayNameComparator(packageManager));
-
-        apps.clear();
-        labels.clear();
-
-        String ownPackageName = getPackageName();
-        for (ResolveInfo info : resolvedApps) {
-            ActivityInfo activityInfo = info.activityInfo;
-            if (activityInfo == null || activityInfo.packageName == null || activityInfo.name == null) {
-                continue;
+        new Thread(() -> {
+            Intent intent = new Intent(Intent.ACTION_MAIN, null);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+            List<ResolveInfo> infos = pm.queryIntentActivities(intent, 0);
+            
+            List<AppItem> items = new ArrayList<>();
+            for (ResolveInfo info : infos) {
+                items.add(new AppItem(
+                        info.loadLabel(pm).toString(),
+                        info.loadIcon(pm),
+                        info.activityInfo.packageName,
+                        info.activityInfo.name
+                ));
             }
 
-            if (ownPackageName.equals(activityInfo.packageName)) {
-                continue;
-            }
+            Collections.sort(items, (a, b) -> String.CASE_INSENSITIVE_ORDER.compare(a.label, b.label));
 
-            apps.add(info);
-
-            CharSequence label = info.loadLabel(packageManager);
-            labels.add(label == null || label.length() == 0
-                    ? activityInfo.packageName
-                    : label.toString());
-        }
-
-        adapter.notifyDataSetChanged();
-
-        if (labels.isEmpty()) {
-            if (!emptyStateShown) {
-                Toast.makeText(this, EMPTY_MESSAGE, Toast.LENGTH_LONG).show();
-                emptyStateShown = true;
-            }
-        } else {
-            emptyStateShown = false;
-        }
+            runOnUiThread(() -> {
+                adapter = new AppAdapter(MainActivity.this, items);
+                listView.setAdapter(adapter);
+            });
+        }).start();
     }
 
-    private void launchApp(int position) {
-        ActivityInfo activityInfo = getActivityInfo(position);
-        if (activityInfo == null) {
-            Toast.makeText(this, OPEN_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Intent launchIntent = packageManager.getLaunchIntentForPackage(activityInfo.packageName);
-        if (launchIntent == null) {
-            launchIntent = new Intent(Intent.ACTION_MAIN);
+    private void launchApp(AppItem item) {
+        if (item != null) {
+            ComponentName name = new ComponentName(item.packageName, item.className);
+            Intent launchIntent = new Intent(Intent.ACTION_MAIN);
             launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-            launchIntent.setClassName(activityInfo.packageName, activityInfo.name);
-        }
-        launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-
-        try {
+            launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            launchIntent.setComponent(name);
             startActivity(launchIntent);
-        } catch (RuntimeException exception) {
-            Toast.makeText(this, OPEN_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void uninstallApp(int position) {
-        ActivityInfo activityInfo = getActivityInfo(position);
-        if (activityInfo == null) {
-            Toast.makeText(this, REMOVE_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Intent removeIntent = new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + activityInfo.packageName));
-        try {
-            startActivity(removeIntent);
-        } catch (RuntimeException exception) {
-            Toast.makeText(this, REMOVE_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-        }
+    private void showContextMenu(final AppItem item) {
+        String[] options = {"App Info", "Uninstall"};
+        new AlertDialog.Builder(this)
+                .setTitle(item.label)
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.parse("package:" + item.packageName));
+                        startActivity(intent);
+                    } else if (which == 1) {
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + item.packageName));
+                            startActivity(intent);
+                        } catch (Exception ignored) {}
+                    }
+                })
+                .show();
     }
 
-    private ActivityInfo getActivityInfo(int position) {
-        if (position < 0 || position >= apps.size()) {
-            return null;
-        }
-
-        ResolveInfo info = apps.get(position);
-        if (info == null) {
-            return null;
-        }
-
-        return info.activityInfo;
-    }
-
-    private static final class LabelAdapter extends ArrayAdapter<String> {
-
-        LabelAdapter(Context context, List<String> labels) {
-            super(context, android.R.layout.simple_list_item_1, labels);
+    private static class AppAdapter extends ArrayAdapter<AppItem> {
+        public AppAdapter(Context context, List<AppItem> items) {
+            super(context, 0, items);
         }
 
         @Override
-        public TextView getView(int position, android.view.View convertView, android.view.ViewGroup parent) {
-            TextView view = (TextView) super.getView(position, convertView, parent);
-            view.setTextColor(Color.BLACK);
-            view.setPadding(32, 24, 32, 24);
+        public View getView(int position, View convertView, ViewGroup parent) {
+            TextView view;
+            if (convertView == null) {
+                view = new TextView(getContext());
+                view.setTextSize(16);
+                view.setTextColor(Color.WHITE);
+                view.setCompoundDrawablePadding(24);
+                view.setGravity(android.view.Gravity.CENTER_VERTICAL);
+                view.setPadding(32, 0, 32, 0);
+            } else {
+                view = (TextView) convertView;
+            }
+
+            int parentHeight = parent.getHeight();
+            if (parentHeight > 0) {
+                int itemHeight = parentHeight / 11;
+                ViewGroup.LayoutParams lp = view.getLayoutParams();
+                if (lp == null) {
+                    lp = new android.widget.AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight);
+                } else {
+                    lp.height = itemHeight;
+                }
+                view.setLayoutParams(lp);
+            }
+
+            AppItem item = getItem(position);
+            if (item != null) {
+                view.setText(item.label);
+                int iconSize = (int) (view.getTextSize() * 1.5);
+                item.icon.setBounds(0, 0, iconSize, iconSize);
+                view.setCompoundDrawables(item.icon, null, null, null);
+            }
+
             return view;
         }
     }

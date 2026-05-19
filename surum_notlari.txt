@@ -1,0 +1,87 @@
+<en-US>
+Performance and bug improvements
+</en-US>
+<ar>
+تحسينات في الأداء وإصلاح الأخطاء
+</ar>
+<cs-CZ>
+Vylepšení výkonu a opravy chyb
+</cs-CZ>
+<da-DK>
+Præstations- og fejlforbedringer
+</da-DK>
+<de-DE>
+Leistungsverbesserungen und Fehlerbehebungen
+</de-DE>
+<es-419>
+Mejoras de rendimiento y corrección de errores
+</es-419>
+<es-ES>
+Mejoras de rendimiento y corrección de errores
+</es-ES>
+<fi-FI>
+Suorituskyvyn parannukset ja virhekorjaukset
+</fi-FI>
+<fr-FR>
+Améliorations des performances et corrections de bugs
+</fr-FR>
+<hi-IN>
+प्रदर्शन और बग सुधार
+</hi-IN>
+<hu-HU>
+Teljesítmény- és hibajavítások
+</hu-HU>
+<id>
+Peningkatan performa dan perbaikan bug
+</id>
+<it-IT>
+Miglioramenti delle prestazioni e correzioni di bug
+</it-IT>
+<iw-IL>
+שיפורי ביצועים ותיקוני באגים
+</iw-IL>
+<ja-JP>
+パフォーマンスの向上とバグの修正
+</ja-JP>
+<ko-KR>
+성능 향상 및 버그 수정
+</ko-KR>
+<nl-NL>
+Prestatieverbeteringen en bugfixes
+</nl-NL>
+<no-NO>
+Ytelsesforbedringer og feilrettinger
+</no-NO>
+<pl-PL>
+Poprawa wydajności i naprawa błędów
+</pl-PL>
+<pt-BR>
+Melhorias de desempenho e correções de bugs
+</pt-BR>
+<ro>
+Îmbunătățiri ale performanței și corectarea erorilor
+</ro>
+<ru-RU>
+Улучшения производительности и исправления ошибок
+</ru-RU>
+<sk>
+Vylepšenia výkonu a opravy chýb
+</sk>
+<sv-SE>
+Prestandaförbättringar och buggfixar
+</sv-SE>
+<th>
+การปรับปรุงประสิทธิภาพและแก้ไขข้อบกพร่อง
+</th>
+<tr-TR>
+Performans ve hata iyileştirmeleri
+</tr-TR>
+<uk>
+Покращення продуктивності та виправлення помилок
+</uk>
+<vi>
+Cải thiện hiệu suất và sửa lỗi
+</vi>
+<zh-CN>
+性能改进和错误修复
+</zh-CN>
